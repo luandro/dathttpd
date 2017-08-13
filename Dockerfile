@@ -14,6 +14,7 @@ RUN apt-get update \
   && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
   && apt-get autoremove -y \
   && ln -s /usr/bin/nodejs /usr/local/bin/node \
+  && node -v
   && npm install -g dathttpd \
   && setcap cap_net_bind_service=+ep `readlink -f \`which node\`` \
   && node -v
