@@ -15,7 +15,7 @@ RUN apt-get update \
   && apt-get autoremove -y \
   && ln -s /usr/bin/nodejs /usr/local/bin/node \
   && node -v
-  && npm install -g dathttpd \
+  && npm install -g dathttpd --allow-root \
   && setcap cap_net_bind_service=+ep `readlink -f \`which node\`` \
   && node -v
 COPY ./scripts/buildConfig.js ~/buildConfig.js
