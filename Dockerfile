@@ -13,13 +13,13 @@ RUN apt-get update \
   && apt-get update --fix-missing \
   && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
   && apt-get autoremove -y \
-  && ln -s /usr/bin/nodejs /usr/local/bin/node
-
-# RUN npm install -g dathttpd && setcap cap_net_bind_service=+ep `readlink -f \`which node\``
-RUN node -v
+  && ln -s /usr/bin/nodejs /usr/local/bin/node \
+  && npm install -g dathttpd \
+  && setcap cap_net_bind_service=+ep `readlink -f \`which node\`` \
+  && node -v
 COPY ./scripts/buildConfig.js ~/buildConfig.js
-# CMD ["dathttpd"]
 RUN node ~/buildConfig.js
+CMD ["dathttpd"]
 
 EXPOSE 80
 EXPOSE 443
