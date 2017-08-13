@@ -1,0 +1,7 @@
+node_modules
+npm-debug.log
+.dat
+data
+example-config.yml
+grafana-dashboard.json
+grafana-screenshot.png
