@@ -4,9 +4,9 @@ LABEL name="dathttpd"
 
 COPY ./scripts/buildConfig.js ~/buildConfig.js
 
-RUN sudo apt-get install libtool m4 automake
+RUN apt-get install libtool m4 automake
 RUN npm install -g dathttpd
-RUN sudo setcap cap_net_bind_service=+ep `readlink -f \`which node\``
+RUN setcap cap_net_bind_service=+ep `readlink -f \`which node\``
 CMD ["dathttpd"]
 RUN node ~/buildConfig.js
 
