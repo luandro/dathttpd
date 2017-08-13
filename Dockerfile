@@ -1,15 +1,16 @@
-FROM ubuntu:14.04
+FROM ubuntu:16.04
 MAINTAINER Luandro <luandro@gmail.com>
 LABEL name="dathttpd"
 
-RUN apt-get update
-RUN apt-get -qq update
-RUN apt-get install -y nodejs npm
-RUN update-alternatives --install /usr/bin/node node /usr/bin/nodejs 10
-
+RUN apt-get udpate && apt-get install -y curl
+RUN curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
 COPY ./scripts/buildConfig.js ~/buildConfig.js
-
-RUN apt-get update && apt-get install libtool m4 automake
+RUN apt-get install -y \
+    libtool \
+    m4 \
+    automake \
+    nodejs \
+    build-essential
 RUN npm install -g dathttpd
 RUN setcap cap_net_bind_service=+ep `readlink -f \`which node\``
 RUN node -v
