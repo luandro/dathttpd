@@ -7,11 +7,12 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update \
   && apt-get install -y curl \
   && curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash - \
-  && apt-get install -y libtool m4 automake supervisor python nodejs git openssl build-essential ca-certificates \
+  && apt-get install -y libtool m4 nodejs build-essential \
   && npm install -g npm@latest \
   && npm update \
   && apt-get update --fix-missing \
-  && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
+  && apt-get clean \
+  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
   && apt-get autoremove -y \
   && ln -s /usr/bin/nodejs /usr/local/bin/node \
   && node -v \
